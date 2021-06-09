@@ -19,6 +19,8 @@ export class ClientComponent implements OnInit {
 
   search: string = "";
   searchVisible: boolean = false;
+  saveVisible: boolean = false;
+  editVisible: boolean = false;
 
   id?: Number;
   shareKey?: String;
@@ -32,7 +34,7 @@ export class ClientComponent implements OnInit {
   cliente = new Cliente;
   clientevo = new Clientvo;
   acction_?: String;
-  editVisible?: boolean = false;
+
   acctionLabel?: String = "Add New Client";
   clientes: Cliente[] = [];
   prueba: Cliente[] = [];
@@ -75,9 +77,11 @@ export class ClientComponent implements OnInit {
   }
 
   loadForm(id: number) {
+    this.editVisible = false;
+    this.saveVisible = true;
+    this.searchVisible = true;
     this.acction_ = "edit";
     this.acctionLabel = "Edit Client";
-    this.editVisible = true;
     this.newClient();
     this.serviceClient.getbyid(id).subscribe(data => {
       this.shareKey = data.shareKey;
@@ -118,6 +122,7 @@ export class ClientComponent implements OnInit {
       });
     } else {
       this.cliente.id = this.id;
+      //ocultar
       this.serviceClient.editClient(this.cliente).subscribe(data => {
         if (data != null) {
           this.newClient();
@@ -130,7 +135,7 @@ export class ClientComponent implements OnInit {
     }
     this.acction_ = "";
     this.acctionLabel = "Add New Client";
-    this.editVisible = false;
+    //this.editVisible = false;
   }
 
   showDialog() {
@@ -145,6 +150,9 @@ export class ClientComponent implements OnInit {
   closeDialog() {
     this.newClient();
     this.display = false;
+    this.editVisible = false;
+    this.saveVisible = true;
+    this.searchVisible = true;
   }
 
   newClient() {
@@ -155,6 +163,9 @@ export class ClientComponent implements OnInit {
     this.user.reset();
     this.acctionLabel = "Add New Client";
     this.showDialog();
+    this.saveVisible = false;
+    this.searchVisible = true;
+    this.editVisible = true;
   }
 
   confirm(id: number) {
@@ -178,10 +189,13 @@ export class ClientComponent implements OnInit {
   }
 
   searchAdvance() {
-    this.searchVisible = true;
+    this.searchVisible = false;
+    this.saveVisible = true;
+    this.editVisible = true;
     this.acctionLabel = "Serach Advance";
     this.user.reset();
     this.showDialog();
+
   }
 
   searchAdvanceServicio() {
@@ -190,8 +204,9 @@ export class ClientComponent implements OnInit {
     this.clientevo.email = this.email;
     this.clientevo.dateStart = this.dateStart;
     this.clientevo.dateEnd = this.dateEnd;
-    this.serviceClient.searchAdvance(this.clientevo).subscribe(data => {     
-        this.clientes = data as Cliente[]   
-    })   
-  }  
+    this.serviceClient.searchAdvance(this.clientevo).subscribe(data => {
+      this.clientes = data as Cliente[]
+      this.closeDialog();
+    })
+  }
 }
