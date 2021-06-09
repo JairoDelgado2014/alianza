@@ -190,16 +190,8 @@ export class ClientComponent implements OnInit {
     this.clientevo.email = this.email;
     this.clientevo.dateStart = this.dateStart;
     this.clientevo.dateEnd = this.dateEnd;
-    this.serviceClient.searchAdvance(this.clientevo).subscribe(data => {
-      this.prueba.push(data);    
-    })
-    this.carga();   
-  }
-
-  carga() {    
-    this.prueba.length;
-    for (let i = 0; i < this.prueba.length; i++) {
-      this.clientes.push(this.prueba[i]);
-    }
-  }
+    this.serviceClient.searchAdvance(this.clientevo).subscribe(data => {     
+        this.clientes = data as Cliente[]   
+    })   
+  }  
 }
