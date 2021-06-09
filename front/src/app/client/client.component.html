@@ -5,7 +5,7 @@
 <div class="container" class="col-md-6">
     <div class="input-group">
         <input type="search" [(ngModel)]="search" class="form-control rounded" placeholder="Enter Share Key" aria-label="Search" aria-describedby="search-addon" />
-        <!--<button disabled="disabled" type="button" (click)="searchClient()" class="btn btn-outline-primary" name="search">Search</button> <button style="margin: 5px;" class="btn btn-primary" icon="pi pi-info-circle" label="Show" (click)="searchAdvance()">Search Advance</button>-->
+        <button disabled="disabled" type="button" (click)="searchClient()" class="btn btn-outline-primary" name="search">Search</button> <button style="margin: 5px;" class="btn btn-primary" icon="pi pi-info-circle" label="Show" (click)="searchAdvance()">Search Advance</button>
     </div>
 </div>
 <div class="col-md-12" style="margin: 5px;">
@@ -67,7 +67,7 @@
                     <input id="email" [(ngModel)]="email" formControlName="email" type="text">
                 </div>
             </div>
-            <div class="p-field p-grid">
+            <div class="p-field p-grid" [hidden]="searchVisible">
                 <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date add</label>
                 <div class="p-col-12 p-md-10">
                     <input id="date" [(ngModel)]="dateAdd" formControlName="date" type="date">
@@ -88,9 +88,9 @@
         </div>
         <p-footer>
             <div class="container" style="margin: 5px;">
-                <button [disabled]="user.invalid" class="btn btn-success" (click)="saveClient()" [hidden]="editVisible" style="margin: 5px;">Save</button>
-                <button  class="btn btn-success" (click)="saveClient('edit')" [hidden]="!editVisible" style="margin: 5px;">Update</button>
-                <!--<button class="btn btn-success" (click)="searchAdvanceServicio()" [hidden]="!editVisible && !searchVisible" style="margin: 5px;">Search</button>-->
+                <button [disabled]="user.invalid" class="btn btn-success" (click)="saveClient()" [hidden]="editVisible || searchVisible " style="margin: 5px;">Save</button>
+                <button [hidden]="!searchVisible" class="btn btn-success" (click)="saveClient('edit')" [hidden]="!editVisible" style="margin: 5px;">Update</button>
+                <button [hidden]="searchVisible" class="btn btn-success" (click)="searchAdvanceServicio()" [hidden]="!editVisible && !searchVisible" style="margin: 5px;">Search</button>
                 <button class="btn btn-danger" (click)="closeDialog()">Close</button>
             </div>
         </p-footer>
