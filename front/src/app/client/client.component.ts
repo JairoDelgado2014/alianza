@@ -49,6 +49,8 @@ export class ClientComponent implements OnInit {
       phone: new FormControl('', [Validators.required, Validators.minLength(7), Validators.maxLength(10)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       date: new FormControl('', [Validators.required]),
+      datestart: new FormControl(''),
+      dateend: new FormControl(''),
       id: new FormControl(''),
     });
   }
@@ -75,8 +77,9 @@ export class ClientComponent implements OnInit {
       }
     });
   }
-
+  datesalida: Date = new Date();
   loadForm(id: number) {
+    this.datesalida = new Date();   
     this.editVisible = false;
     this.saveVisible = true;
     this.searchVisible = true;
@@ -121,8 +124,7 @@ export class ClientComponent implements OnInit {
         }
       });
     } else {
-      this.cliente.id = this.id;
-      //ocultar
+      this.cliente.id = this.id;      
       this.serviceClient.editClient(this.cliente).subscribe(data => {
         if (data != null) {
           this.newClient();
@@ -134,8 +136,7 @@ export class ClientComponent implements OnInit {
       });
     }
     this.acction_ = "";
-    this.acctionLabel = "Add New Client";
-    //this.editVisible = false;
+    this.acctionLabel = "Add New Client";   
   }
 
   showDialog() {

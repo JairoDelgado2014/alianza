@@ -70,19 +70,19 @@
             <div class="p-field p-grid" [hidden]="saveVisible">
                 <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date add</label>
                 <div class="p-col-12 p-md-10">
-                    <input id="date" [(ngModel)]="dateAdd" formControlName="date" type="date">
+                    <input id="date" [(ngModel)]="dateAdd" formControlName="date" type="date" value="{{ datesalida | date }}">
                 </div>
             </div>
             <div class="p-field p-grid" [hidden]="searchVisible">
                 <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date Start</label>
                 <div class="p-col-12 p-md-10">
-                    <input id="datestart" [(ngModel)]="dateStart" formControlName="date" type="date">
+                    <input id="datestart" [(ngModel)]="dateStart" formControlName="datestart" type="date">
                 </div>
             </div>
             <div class="p-field p-grid" [hidden]="searchVisible">
                 <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date End</label>
                 <div class="p-col-12 p-md-10">
-                    <input id="dateend" [(ngModel)]="dateEnd" formControlName="date" type="date">
+                    <input id="dateend" [(ngModel)]="dateEnd" formControlName="dateend" type="date">
                 </div>
             </div>
         </div>
