@@ -26,6 +26,7 @@ public class ClienteService {
 	public ClientEntity save(ClientEntity clientEntity) {
 		try {
 			if (clientEntity.getShareKey() != null) {
+				logger.info(" registro realizado exitosamente");
 				return clienteRepository.save(clientEntity);
 			}
 		} catch (Exception e) {
@@ -42,6 +43,7 @@ public class ClienteService {
 
 	public Boolean deleteById(Integer id) {
 		try {
+			logger.warn(" registro con id: " + id + " eliminado exitosamente");
 			clienteRepository.deleteById(id);
 			return true;
 		} catch (Exception e) {
@@ -66,6 +68,10 @@ public class ClienteService {
 
 	public List<ClientEntity> findByPrueba(String sharekey, String phone, String email, Date dataStart, Date dateEnd) {
 		return clienteRepository.findByPrueba(sharekey, phone, email, dataStart, dateEnd);
+	}
+	
+	public Integer contar() {
+		return (int) clienteRepository.count();
 	}
 
 }

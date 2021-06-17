@@ -18,13 +18,19 @@ dependencies {
 	implementation group: 'log4j', name: 'log4j', version: '1.2.17'
 	implementation group: 'log4j', name: 'apache-log4j-extras', version: '1.2.17'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
-	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.4.0'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.4.0'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation ('org.springframework.boot:spring-boot-starter-test'){
+		exclude group:'junit', module: 'junit'
+	}
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
 
-test {
+tasks.test {
 	useJUnitPlatform()
+	
 }
