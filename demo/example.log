@@ -7,3 +7,14 @@
 [http-nio-9090-exec-1] WARN  com.example.demo.services.ClienteService  - Registro con: 4actualizado con éxito
 [http-nio-9090-exec-5] WARN  com.example.demo.services.ClienteService  -  registro con id: 4 eliminado exitosamente
 [http-nio-9090-exec-9] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
