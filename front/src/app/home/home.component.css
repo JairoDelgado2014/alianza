@@ -1,0 +1,18 @@
+.card-borde {
+    border: solid 10px #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all ease-out 0.2s;
+}
+
+.card-border:hover {
+    transform: scale(1.05);
+}
+
+#games {
+    background: #ffffff;
+    /* background: url(), linear-gradient(0deg, #ffffff 0%, #ffffff 0%);*/
+    background-repeat: repeat-x;
+    background-size: 75%;
+    margin-top: -20px;
+}

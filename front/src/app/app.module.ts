@@ -16,13 +16,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { routing } from './app-routing';
+import { HomeComponent } from './home/home.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientComponent
+    ClientComponent,
+    HomeComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -34,6 +37,7 @@ import { ConfirmationService } from 'primeng/api';
     HttpClientModule,
     DialogModule,
     ReactiveFormsModule,
+  
   ],
   providers: [ClientService, ConfirmationService],
   bootstrap: [AppComponent]

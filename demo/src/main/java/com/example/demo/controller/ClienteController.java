@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -65,5 +66,10 @@ public class ClienteController {
 		Date dateStart = clientVo.getDateStart();
 		Date dateEnd = clientVo.getDateEnd();
 		return clientService.findByPrueba(sharekey, phone, email, dateStart, dateEnd);
+	}
+
+	@GetMapping("/paginas/{page}/{size}")
+	public Page<ClientEntity> getPaginatedCountries(@PathVariable int page, @PathVariable int size) {
+		return clientService.paginar(page, size);
 	}
 }

@@ -1,0 +1,15 @@
+.links {
+    color: aliceblue;
+    font-size: large;
+    text-decoration: none;
+    word-spacing: 5pt;
+    margin: 5px;
+}
+
+.links:hover {
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    word-spacing: 5pt;
+    margin: 5px;
+}

@@ -3,6 +3,9 @@ package com.example.demo.repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,5 +24,8 @@ public interface ClienteRepository extends JpaRepository<ClientEntity, Integer> 
 			+ "AND c.date_add >=  if(?4 IS NULL,'1000-01-01',?4) AND c.date_add <= if(?5 IS NULL,'3000-01-01',?5)", nativeQuery = true)
 	List<ClientEntity> findByPrueba(@Param("sharekey") String sharekey, @Param("phone") String phone,
 			@Param("email") String email, @Param("dateStart") Date dateStart, @Param("dateEnd") Date dateEnd);
+	
+	Page<ClientEntity> findAll(Pageable pageable);
+	
 
 }

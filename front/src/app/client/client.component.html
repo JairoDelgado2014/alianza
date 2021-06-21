@@ -1,103 +1,139 @@
-<div class="container-fluid" style="margin: auto;">
-    <button style="margin: 5px;" class="btn btn-primary" icon="pi pi-info-circle" label="Show" (click)="addClient()">New</button>
-    <button style="margin: 5px;" class="btn btn-primary" icon="pi pi-info-circle" label="Show" (click)="tb.exportCSV()">Export</button>
-</div>
-<div class="container-fluid" class="col-xs-12 col-md-6">
-    <div class="input-group">
-        <input type="search" [(ngModel)]="search" class="form-control rounded" placeholder="Enter Share Key" aria-label="Search" aria-describedby="search-addon" />
-        <button type="button" (click)="searchClient()" class="btn btn-outline-primary" name="search">Search</button> <button style="margin: 5px;" class="btn btn-primary" icon="pi pi-info-circle" label="Show" (click)="searchAdvance()">Search Advance</button>
+<div class="container">
+    <div class="container m-2">
+        <button class="btn btn-primary" icon="pi pi-info-circle" label="Show" (click)="addClient()">New</button>
+        <button class="btn btn-primary" icon="pi pi-info-circle" label="Show">Export</button>
     </div>
-</div>
-<div class="col-xs-12 col-md-12" style="margin: 5px;">
-    <h5 class="text text-info">Clients</h5>
-</div>
-<div class="col-xs-12 col-md-12">
-    <p-table #tb [value]="clientes" exportFilename="listClients">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>ShareKey</th>
-                <th>BusinessId</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>DateAdd</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-clientes>
-            <tr>
-                <td style="width: 10%; overflow-wrap: break-word; ">{{clientes.shareKey}}</td>
-                <td style="width: 10%; overflow-wrap: break-word;">{{clientes.businessId}}</td>
-                <td style="width: 20%; overflow-wrap: break-word;">{{clientes.email}}</td>
-                <td style="width: 20%; overflow-wrap: break-word;">{{clientes.phone}}</td>
-                <td style="width: 20%; overflow-wrap: break-word;">{{clientes.dateAdd | date:'YYYY / MM / dd'}}</td>
-                <td><button class="btn btn-warning" (click)="loadForm(clientes.id)">Edit</button></td>
-                <td><button class="btn btn-danger" (click)="confirm(clientes.id)">Delete</button></td>
-            </tr>
-        </ng-template>
-    </p-table>
-</div>
-
-
-<p-dialog [(visible)]="display" [style]="{width: '25vw'}">
-    <ng-template pTemplate="header">
-        <h3>{{acctionLabel}}</h3>
-    </ng-template>
-    <form novalidate [formGroup]="user">
-        <div class="p-fluid">
-            <input id="id" [(ngModel)]="id" formControlName="id" hidden>
-            <div class="p-field p-grid">
-                <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">ShareKey</label>
-                <div class="p-col-12 p-md-10">
-                    <input id="shareKey" [(ngModel)]="shareKey" formControlName="shareKey">
-                </div>
-            </div>
-            <div class="p-field p-grid">
-                <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">BusinessId</label>
-                <div class="p-col-12 p-md-10">
-                    <input id="businessId" [(ngModel)]="businessId" formControlName="businessId" type="text">
-                </div>
-            </div>
-            <div class="p-field p-grid">
-                <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Phone</label>
-                <div class="p-col-12 p-md-10">
-                    <input id="phone" [(ngModel)]="phone" formControlName="phone" type="number">
-                </div>
-            </div>
-            <div class="p-field p-grid">
-                <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Email</label>
-                <div class="p-col-12 p-md-10">
-                    <input id="email" [(ngModel)]="email" formControlName="email" type="text">
-                </div>
-            </div>
-            <div class="p-field p-grid" [hidden]="saveVisible">
-                <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date add</label>
-                <div class="p-col-12 p-md-10">
-                    <input id="date" [(ngModel)]="dateAdd" formControlName="date" type="date" value="{{ datesalida | date }}">
-                </div>
-            </div>
-            <div class="p-field p-grid" [hidden]="searchVisible">
-                <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date Start</label>
-                <div class="p-col-12 p-md-10">
-                    <input id="datestart" [(ngModel)]="dateStart" formControlName="datestart" type="date">
-                </div>
-            </div>
-            <div class="p-field p-grid" [hidden]="searchVisible">
-                <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date End</label>
-                <div class="p-col-12 p-md-10">
-                    <input id="dateend" [(ngModel)]="dateEnd" formControlName="dateend" type="date">
-                </div>
-            </div>
+    <div class="container" class="col-xs-12 col-md-6">
+        <div class="input-group">
+            <input type="search" [(ngModel)]="search" class="form-control rounded" placeholder="Enter Share Key" aria-label="Search" aria-describedby="search-addon" />
+            <button type="button" (click)="searchClient()" class="btn btn-outline-primary" name="search">Search</button> <button style="margin: 5px;" class="btn btn-primary" icon="pi pi-info-circle" label="Show" (click)="searchAdvance()">Search Advance</button>
         </div>
-        <p-footer>
-            <div class="container" style="margin: 5px;">
-                <button [hidden]="saveVisible" [disabled]="user.invalid" class="btn btn-success" (click)="saveClient()" style="margin: 5px;">Save</button>
-                <button [hidden]="editVisible" class="btn btn-success" (click)="saveClient('edit')" style="margin: 5px;">Update</button>
-                <button [hidden]="searchVisible" class="btn btn-success" (click)="searchAdvanceServicio()" style="margin: 5px;">Search</button>
-                <button class="btn btn-danger" (click)="closeDialog()">Close</button>
-            </div>
-        </p-footer>
-    </form>
-</p-dialog>
+    </div>
+    <div class="col-xs-12 col-md-12">
+        <h5 class="text text-info">Clients</h5>
+    </div>
 
-<p-confirmDialog header="Delete" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    <div class="card">
+        <p-table [value]="clientes" [paginator]="true" [rows]="10" [showCurrentPageReport]="false" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>ShareKey</th>
+                    <th>BusinessId</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>DateAdd</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-client>
+                <tr>
+                    <td style="width: 10%; overflow-wrap: break-word; ">{{client.shareKey}}</td>
+                    <td style="width: 10%; overflow-wrap: break-word;">{{client.businessId}}</td>
+                    <td style="width: 20%; overflow-wrap: break-word;">{{client.email}}</td>
+                    <td style="width: 20%; overflow-wrap: break-word;">{{client.phone}}</td>
+                    <td style="width: 20%; overflow-wrap: break-word;">{{client.dateAdd | date:'YYYY / MM / dd'}}</td>
+                    <td><button class="btn btn-warning" (click)="loadForm(client.id)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="confirm(client.id)">Delete</button></td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <p-button type="button" (click)="addClient()" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+            </ng-template>
+            <!--<ng-template pTemplate="paginatorright">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>-->
+        </p-table>
+    </div>
+
+    <!--<div class="col-xs-12 col-md-12">
+        <p-table #tb [value]="clientes" exportFilename="listClients">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>ShareKey</th>
+                    <th>BusinessId</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>DateAdd</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-clientes>
+                <tr>
+                    <td style="width: 10%; overflow-wrap: break-word; ">{{clientes.shareKey}}</td>
+                    <td style="width: 10%; overflow-wrap: break-word;">{{clientes.businessId}}</td>
+                    <td style="width: 20%; overflow-wrap: break-word;">{{clientes.email}}</td>
+                    <td style="width: 20%; overflow-wrap: break-word;">{{clientes.phone}}</td>
+                    <td style="width: 20%; overflow-wrap: break-word;">{{clientes.dateAdd | date:'YYYY / MM / dd'}}</td>
+                    <td><button class="btn btn-warning" (click)="loadForm(clientes.id)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="confirm(clientes.id)">Delete</button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>-->
+
+
+    <p-dialog [(visible)]="display" [style]="{width: '25vw'}">
+        <ng-template pTemplate="header">
+            <h3>{{acctionLabel}}</h3>
+        </ng-template>
+        <form novalidate [formGroup]="user">
+            <div class="p-fluid">
+                <input id="id" [(ngModel)]="id" formControlName="id" hidden>
+                <div class="p-field p-grid">
+                    <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">ShareKey</label>
+                    <div class="p-col-12 p-md-10">
+                        <input id="shareKey" [(ngModel)]="shareKey" formControlName="shareKey">
+                    </div>
+                </div>
+                <div class="p-field p-grid">
+                    <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">BusinessId</label>
+                    <div class="p-col-12 p-md-10">
+                        <input id="businessId" [(ngModel)]="businessId" formControlName="businessId" type="text">
+                    </div>
+                </div>
+                <div class="p-field p-grid">
+                    <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Phone</label>
+                    <div class="p-col-12 p-md-10">
+                        <input id="phone" [(ngModel)]="phone" formControlName="phone" type="number">
+                    </div>
+                </div>
+                <div class="p-field p-grid">
+                    <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Email</label>
+                    <div class="p-col-12 p-md-10">
+                        <input id="email" [(ngModel)]="email" formControlName="email" type="text">
+                    </div>
+                </div>
+                <div class="p-field p-grid" [hidden]="saveVisible">
+                    <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date add</label>
+                    <div class="p-col-12 p-md-10">
+                        <input id="date" [(ngModel)]="dateAdd" formControlName="date" type="date" value="{{ datesalida | date }}">
+                    </div>
+                </div>
+                <div class="p-field p-grid" [hidden]="searchVisible">
+                    <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date Start</label>
+                    <div class="p-col-12 p-md-10">
+                        <input id="datestart" [(ngModel)]="dateStart" formControlName="datestart" type="date">
+                    </div>
+                </div>
+                <div class="p-field p-grid" [hidden]="searchVisible">
+                    <label for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">Date End</label>
+                    <div class="p-col-12 p-md-10">
+                        <input id="dateend" [(ngModel)]="dateEnd" formControlName="dateend" type="date">
+                    </div>
+                </div>
+            </div>
+            <p-footer>
+                <div class="container" style="margin: 5px;">
+                    <button [hidden]="saveVisible" [disabled]="user.invalid" class="btn btn-success" (click)="saveClient()" style="margin: 5px;">Save</button>
+                    <button [hidden]="editVisible" class="btn btn-success" (click)="saveClient('edit')" style="margin: 5px;">Update</button>
+                    <button [hidden]="searchVisible" class="btn btn-success" (click)="searchAdvanceServicio()" style="margin: 5px;">Search</button>
+                    <button class="btn btn-danger" (click)="closeDialog()">Close</button>
+                </div>
+            </p-footer>
+        </form>
+    </p-dialog>
+
+    <p-confirmDialog header="Delete" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+</div>

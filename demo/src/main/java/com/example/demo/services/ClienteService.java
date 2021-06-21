@@ -6,6 +6,9 @@ import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.ClientEntity;
@@ -69,9 +72,15 @@ public class ClienteService {
 	public List<ClientEntity> findByPrueba(String sharekey, String phone, String email, Date dataStart, Date dateEnd) {
 		return clienteRepository.findByPrueba(sharekey, phone, email, dataStart, dateEnd);
 	}
-	
+
 	public Integer contar() {
 		return (int) clienteRepository.count();
+	}
+
+	public Page<ClientEntity> paginar(Integer page, Integer size) {
+		Pageable paging = PageRequest.of(page, size);
+		Page<ClientEntity> pagedResult = clienteRepository.findAll(paging);
+		return pagedResult;
 	}
 
 }

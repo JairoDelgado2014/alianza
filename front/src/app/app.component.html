@@ -9,32 +9,23 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="margin: 20px;">
-        <div class="row">
-            <div class="col-md-1">
-                <h2>Alianza</h2>
-            </div>
-            <div class="col-md-11">
-                <img src="" alt="">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-1">
-
-            </div>
-            <div class="col-md-2" s>
-                <p><a href="#" style="text-decoration: none;">Client</a></p>
-                <p><a href="#" style="text-decoration: none;">Clients look history</a></p>
-                <p><a href="#" style="text-decoration: none;">Emergency PIN configuration</a></p>
-                <p><a href="#" style="text-decoration: none;">Emergency PIN history</a></p>
-            </div>
-            <div class="col-md-9">
-                <app-client></app-client>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a (click)="home()" class="links">Home</a>
+                    <a (click)="cliente()" class="links">Client</a>
+                    <a class="links" href="#">Provaider</a>
+                </div>
             </div>
         </div>
+    </nav>
+    <div class="row">
+        <router-outlet></router-outlet>
     </div>
 </body>
-
-
 
 </html>
