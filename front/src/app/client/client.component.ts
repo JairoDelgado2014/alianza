@@ -38,10 +38,15 @@ export class ClientComponent implements OnInit {
   acctionLabel?: String = "Add New Client";
   clientes: Cliente[] = [];
   prueba: Cliente[] = [];
+
+  first = 0;
+  rows = 10;
+
   constructor(private router: Router, private serviceClient: ClientService, private confirmationService: ConfirmationService) {
   }
 
   ngOnInit(): void {
+    this.paginar();
     this.listar();
     this.user = new FormGroup({
       shareKey: new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -66,11 +71,14 @@ export class ClientComponent implements OnInit {
       this.clientes = data;
     });
   }
+  paginar() {
+    console.log(this.serviceClient.pagelista());
 
+  }
   delete(id: number) {
     this.serviceClient.delete(id).subscribe(data => {
       if (data == true) {
-        this.listar();
+        //this.listar();
         console.log("Eliminado con Éxito");
       } else {
         console.log("Error al eliminar");
@@ -79,7 +87,7 @@ export class ClientComponent implements OnInit {
   }
   datesalida: Date = new Date();
   loadForm(id: number) {
-    this.datesalida = new Date();   
+    this.datesalida = new Date();
     this.editVisible = false;
     this.saveVisible = true;
     this.searchVisible = true;
@@ -118,25 +126,25 @@ export class ClientComponent implements OnInit {
         if (data != null) {
           this.newClient();
           this.closeDialog();
-          this.listar();
+          //  this.listar();
         } else {
           this.closeDialog();
         }
       });
     } else {
-      this.cliente.id = this.id;      
+      this.cliente.id = this.id;
       this.serviceClient.editClient(this.cliente).subscribe(data => {
         if (data != null) {
           this.newClient();
           this.closeDialog();
-          this.listar();
+          // this.listar();
         } else {
           this.closeDialog();
         }
       });
     }
     this.acction_ = "";
-    this.acctionLabel = "Add New Client";   
+    this.acctionLabel = "Add New Client";
   }
 
   showDialog() {
@@ -185,7 +193,7 @@ export class ClientComponent implements OnInit {
         this.clientes = data;
       })
     } else {
-      this.listar();
+      // this.listar();
     }
   }
 
@@ -209,5 +217,25 @@ export class ClientComponent implements OnInit {
       this.clientes = data as Cliente[]
       this.closeDialog();
     })
+  }
+
+  next() {
+    this.first = this.first + this.rows;
+  }
+
+  prev() {
+    this.first = this.first - this.rows;
+  }
+
+  reset() {
+    this.first = 0;
+  }
+
+  isLastPage(): boolean {
+    return this.clientes ? this.first === (this.clientes.length - this.rows) : true;
+  }
+
+  isFirstPage(): boolean {
+    return this.clientes ? this.first === 0 : true;
   }
 }
