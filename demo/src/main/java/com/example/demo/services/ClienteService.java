@@ -28,7 +28,7 @@ public class ClienteService {
 
 	public ClientEntity save(ClientEntity clientEntity) {
 		try {
-			if (clientEntity.getShareKey() != null) {
+			if (clientEntity.getShareKey() != null && clientEntity.getPhone().length() >= 7) {
 				logger.info(" registro realizado exitosamente");
 				return clienteRepository.save(clientEntity);
 			}

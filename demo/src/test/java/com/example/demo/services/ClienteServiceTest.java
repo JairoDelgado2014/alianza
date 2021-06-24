@@ -3,6 +3,7 @@ package com.example.demo.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class ClienteServiceTest {
 	@DisplayName("Test Save Clients with parameters ok")
 	@Test
 	void SaveClient() {
-		ClientEntity clienteOne = new ClientEntity(0, "A", "A", "A", "A", fecha, 1);
+		ClientEntity clienteOne = new ClientEntity(0, "A", "A", "A", "7777777", fecha, 1);
 		ClientEntity clienteTwo = new ClientEntity(1, "B", "B", "B", "B", fecha, 1);
 		when(clienteRepository.save(clienteOne)).thenReturn(clienteTwo);
 		ClientEntity salida = (clienteService.save(clienteOne));
@@ -117,6 +118,26 @@ public class ClienteServiceTest {
 		when(clienteRepository.findById(id)).thenReturn(null);
 		Optional<ClientEntity> salida = clienteService.findbyid(id);
 		assertNull(salida);
+	}
+
+	///////////////////////////////////////////////////////////////////////////////////
+	@DisplayName("test length mim phone number")
+	@Test
+	void whenthelimitoverdata() {
+		ClientEntity clienteOne = new ClientEntity(0, "A", "A", "A", "77777", fecha, 1);
+		when(clienteRepository.save(clienteOne)).thenReturn(null);
+		ClientEntity salida = clienteService.save(clienteOne);
+		assertNull(salida);
+	}
+
+	@DisplayName("test length ok phone number")
+	@Test
+	void whenthelimitisok() {
+		ClientEntity clienteOne = new ClientEntity(0, "A", "A", "A", "7777777", fecha, 1);
+		ClientEntity clienteTwo = new ClientEntity(1, "A", "A", "A", "7777777", fecha, 1);
+		when(clienteRepository.save(clienteOne)).thenReturn(clienteTwo);
+		ClientEntity salida = clienteService.save(clienteOne);
+		assertNotNull(salida);
 	}
 
 	@SuppressWarnings({})
