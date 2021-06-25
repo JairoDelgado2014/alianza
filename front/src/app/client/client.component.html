@@ -13,8 +13,8 @@
         <h5 class="text text-info">Clients</h5>
     </div>
 
-    <!--<div class="card">
-        <h5>Programmatic Control</h5>
+    <div class="card mt-5">
+        <h5>Clients by paginate</h5>
         <div class="p-mb-3">
             <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" styleClass="p-button-text"></p-button>
             <p-button type="button" icon="pi pi-refresh" (click)="reset()" styleClass="p-button-text"></p-button>
@@ -23,23 +23,27 @@
         <p-table [value]="clientes" [paginator]="true" [rows]="rows" [showCurrentPageReport]="true" [(first)]="first" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Name</th>
-                    <th>Country</th>
-                    <th>Company</th>
-                    <th>Representative</th>
+                    <th>ShareKey</th>
+                    <th>BusinessId</th>
+                    <th>Phone</th>
+                    <th>email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-customer>
+            <ng-template pTemplate="body" let-clientes>
                 <tr>
-                    <td>{{customer.name}}</td>
-                    <td>{{customer.country.name}}</td>
-                    <td>{{customer.company}}</td>
-                    <td>{{customer.representative.name}}</td>
+                    <td>{{clientes.shareKey}}</td>
+                    <td>{{clientes.businessId}}</td>
+                    <td>{{clientes.phone}}</td>
+                    <td>{{clientes.email}}</td>
+                    <td><button class="btn btn-warning" (click)="loadForm(clientes.id)">Edit</button></td>
+                    <td><button class="btn btn-danger" (click)="confirm(clientes.id)">Delete</button></td>
                 </tr>
             </ng-template>
         </p-table>
-    </div>-->
-    <div class="card">
+    </div>
+    <!--<div class="card">
         <div class="col-xs-12 col-md-12">
             <p-table #tb [value]="clientes" exportFilename="listClients">
                 <ng-template pTemplate="header">
@@ -66,7 +70,7 @@
                 </ng-template>
             </p-table>
         </div>
-    </div>
+    </div>-->
 
     <p-dialog [(visible)]="display" [style]="{width: '25vw'}">
         <ng-template pTemplate="header">

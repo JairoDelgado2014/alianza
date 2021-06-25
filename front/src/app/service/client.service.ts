@@ -10,13 +10,13 @@ export class ClientService {
   private urlBase = "http://localhost:9090/client/";
   constructor(private http: HttpClient) { }
 
-  
 
-   getAll() {
-     return this.http.get<Cliente[]>(this.urlBase + "listar");
-   }
 
-  
+  getAll() {
+    return this.http.get<Cliente[]>(this.urlBase + "listar");
+  }
+
+
 
   createClient(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(this.urlBase + "guardar", cliente);
@@ -43,8 +43,8 @@ export class ClientService {
     return this.http.post<Cliente>(this.urlBase + "advance", clientevo);
   }
 
-  pagelista() {    
-    return this.http.get<Cliente[]>(this.urlBase + "paginas/0/1").subscribe(res=><Cliente[]>res);  
+  pagelista(): Observable<any> {
+    return this.http.get<any>(this.urlBase + "paginas/0/1");
   }
 
 }

@@ -42,6 +42,17 @@ export class ClientComponent implements OnInit {
   first = 0;
   rows = 10;
 
+  paises: Array<any> = [];
+  totalPages: Array<number> = [];
+
+  page = 0;
+  size = 10;
+  order = 'id';
+  asc = true;
+
+  isFirst = false;
+  isLast = false;
+
   constructor(private router: Router, private serviceClient: ClientService, private confirmationService: ConfirmationService) {
   }
 
@@ -72,9 +83,14 @@ export class ClientComponent implements OnInit {
     });
   }
   paginar() {
-    console.log(this.serviceClient.pagelista());
-
+    this.serviceClient.pagelista().subscribe(data => {
+      this.paises = data.content;
+      this.isFirst = data.first;
+      this.isLast = data.last;
+      this.totalPages = new Array(data.totalPages);
+    })
   }
+
   delete(id: number) {
     this.serviceClient.delete(id).subscribe(data => {
       if (data == true) {
