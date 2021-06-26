@@ -3,9 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { Cliente } from '../client';
+import { Cliente } from '../model/client';
+import { Clientvo } from '../model/clientvo';
 import { ClientService } from '../service/client.service';
-import { Clientvo } from '../clientvo';
+
 
 
 @Component({

@@ -17,6 +17,11 @@ export class AppComponent {
   cliente() {
     this.router.navigate(['client']);
   }
+
+  country() {
+    this.router.navigate(['country']);
+  }
+  
   title = 'Alianz';
 }
 

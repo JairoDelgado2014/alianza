@@ -43,34 +43,6 @@
             </ng-template>
         </p-table>
     </div>
-    <!--<div class="card">
-        <div class="col-xs-12 col-md-12">
-            <p-table #tb [value]="clientes" exportFilename="listClients">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>ShareKey</th>
-                        <th>BusinessId</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>DateAdd</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-clientes>
-                    <tr>
-                        <td style="width: 10%; overflow-wrap: break-word; ">{{clientes.shareKey}}</td>
-                        <td style="width: 10%; overflow-wrap: break-word;">{{clientes.businessId}}</td>
-                        <td style="width: 20%; overflow-wrap: break-word;">{{clientes.email}}</td>
-                        <td style="width: 20%; overflow-wrap: break-word;">{{clientes.phone}}</td>
-                        <td style="width: 20%; overflow-wrap: break-word;">{{clientes.dateAdd | date:'YYYY / MM / dd'}}</td>
-                        <td><button class="btn btn-warning" (click)="loadForm(clientes.id)">Edit</button></td>
-                        <td><button class="btn btn-danger" (click)="confirm(clientes.id)">Delete</button></td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-    </div>-->
 
     <p-dialog [(visible)]="display" [style]="{width: '25vw'}">
         <ng-template pTemplate="header">

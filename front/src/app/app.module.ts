@@ -18,6 +18,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { routing } from './app-routing';
 import { HomeComponent } from './home/home.component';
+import { CountryComponent } from './country/country.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -25,13 +27,15 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     ClientComponent,
-    HomeComponent
+    HomeComponent,
+    CountryComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     TableModule,
+    DropdownModule,
     FormsModule,
     ConfirmDialogModule,
     HttpClientModule,

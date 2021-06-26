@@ -37,3 +37,4 @@
 [main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
 [main] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
 [http-nio-9090-exec-4] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente
+[http-nio-9090-exec-4] INFO  com.example.demo.services.ClienteService  -  registro realizado exitosamente

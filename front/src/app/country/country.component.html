@@ -1,0 +1,41 @@
+<div class="container">
+    <h3>List of Country</h3>
+
+
+    <div class="card mt-5">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <p-dropdown inputId="state" [options]="region" [(ngModel)]="selectedState" placeholder="Select Region" optionLabel="nameRegion"></p-dropdown>
+                </div>
+                <div class="col-md-2">
+                    <button (click)="serarch()" pButton type="button" label="Search"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <div class="col-xs-12 col-md-12">
+            <p-table [value]="country">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Country</th>
+                        <th>Region</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-countries>
+                    <tr>
+                        <td style="width: 10%; overflow-wrap: break-word;">{{countries.nameCountry}}</td>
+                        <td style="width: 10%; overflow-wrap: break-word;">{{countries.region.nameRegion}}</td>
+                        <td><button class="btn btn-warning">Edit</button></td>
+                        <td><button class="btn btn-danger">Delete</button></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+</div>
