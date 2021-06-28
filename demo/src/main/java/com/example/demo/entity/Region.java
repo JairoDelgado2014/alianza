@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="regions")
+@Table(name = "regions")
 public class Region {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="name")
+
+	@Column(name = "name", nullable = false)
 	private String nameRegion;
 
 	public Long getId() {
@@ -33,7 +33,5 @@ public class Region {
 	public void setNameRegion(String nameRegion) {
 		this.nameRegion = nameRegion;
 	}
-	
-	
-	
+
 }

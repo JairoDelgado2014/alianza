@@ -13,12 +13,12 @@ import javax.persistence.Table;
 @Table(name = "conutries")
 public class Country {
 
-	//un departamento hay muchos empelados  on to many
+	// un departamento hay muchos empelados on to many
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "nameCourntry")
+	@Column(name = "nameCourntry", nullable = false)
 	private String nameCountry;
 
 	@ManyToOne // Forein key
@@ -48,6 +48,5 @@ public class Country {
 	public void setRegion(Region region) {
 		this.region = region;
 	}
-	
-	
+
 }
